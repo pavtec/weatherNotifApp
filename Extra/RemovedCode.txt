@@ -1,0 +1,34 @@
+/*
+//Logger Middleware
+var logger = function(req, res, next){
+	console.log('Logging...');
+	next();
+}
+
+//Uses logger middleware
+app.use(logger);
+*/
+
+
+//Object employees
+var employees = [
+	{
+		id: 1,
+		fnm: "Dave",
+		lnm: "Raidlein",
+		email: "rhodendavid123@gmail.com"
+	},
+	{
+		id: 2,
+		fnm: "David",
+		lnm: "Rhoden",
+		email: "rhodendavid@live.com"
+	},
+	{
+		id: 3,
+		fnm: "Tiffany",
+		lnm: "Fisher",
+		email: "tif.red.carter@gmail.com"
+	}
+]
+
