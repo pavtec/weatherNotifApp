@@ -1,0 +1,17 @@
+{
+  "name": "ppta",
+  "version": "1.0.0",
+  "description": "A weather notification app.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "body-parser": "*",
+    "ejs": "^2.5.9",
+    "express": "*",
+    "request": "^2.85.0"
+  },
+  "author": "David Rhoden",
+  "license": "ISC"
+}
