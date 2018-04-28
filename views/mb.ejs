@@ -1,0 +1,39 @@
+<html>
+	<head>
+		<meta name = "viewport" content = "width=device-width, intial-scale = 1">
+		<link rel = "stylesheet" href = "http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+		<script src = "http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	
+		<!--Include the jQuery mobile library -->
+		<script src = "http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+		
+		<title>Krace Gennedy</title>
+	</head>
+	<body style = "text-align: center;">
+		<div data-role = "page" data-theme = "b">
+			<h1>MoBay Loving</h1>	
+			<h2>Montego Bay - Tomorrow's Weather</h2>
+			<div id = "mbw">
+				<p>
+					This data has been pulled from<br>
+					<b><a href="<%= mburl %>" class = "ui-btn ui-btn-inline">Here:<br><%= mburl %></a></b>
+					<br><br><br>
+
+					Weather ID          : <%= mid %> 
+					<br><br><br>
+
+					Weather Condition   : <%= mmain %> 
+					<br><br><br>
+
+					Weather Description : <%= mdesc %> 
+					<br><br><br>
+
+					Date				: <%= mdate %>
+					<br><br><br>
+					
+					<a href = "<%= indexurl %>" class = "ui-btn ui-btn-inline">Return</a>
+				</p>
+			</div>	
+		</div>
+	</body>
+</html>

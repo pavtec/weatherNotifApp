@@ -1,25 +1,32 @@
-<% include partials/header %>
+<html>
+	<head>
+		<meta name = "viewport" content = "width=device-width, intial-scale = 1">
+		<link rel = "stylesheet" href = "http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+		<script src = "http://code.jquery.com/jquery-1.11.1.min.js"></script>
+		<script src = "http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+		
+		<title>Krace Gennedy</title>
+	</head>
 
-	<h1><%= title %></h1>
+	<body style="text-align: center;">
+		<div data-role = "page" id = "p1" data-theme = "b">
+			<div data-role = "header">
+				<h1><%= title %></h1>
+			</div>
+		
+			<h2>Montego Bay - Tomorrow's Weather</h2>
+			<div id = "mbw">
+				<p>
+					<a href = "<%= mblink %>" class = "ui-btn ui-btn-inline">See Montego Bay's Forecast</a>
+				</p>
+			</div>
 
-	<h2>Montego Bay Today's Weather</h2>
-	<div id = "mbw">
-
-	</div>
-
-	<h2>Kingston Today's Weather</h2>
-	<div id = "kw">
-
-	</div>	
-
-	<ul>
-		<% employees.forEach(function(employee){ %>
-			<li> 
-				<%=employee.id%>
-				<%=employee.fnm%>
-				<%=employee.lnm%>
-			</li>
-		<% }) %>
-	</ul>
-
-<% include partials/footer %>
+			<h2>Kingston - Tomorrow's Weather</h2>
+			<div id = "kw">
+				<p>
+					<a href = "<%= kgnlink %>" class = "ui-btn ui-btn-inline">See Kingston's Forecast</a>
+				</p>
+			</div>	
+		</div>
+	</body>
+</html

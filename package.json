@@ -10,6 +10,8 @@
     "body-parser": "*",
     "ejs": "^2.5.9",
     "express": "*",
+    "mongojs": "^2.5.0",
+    "nodemailer": "^4.6.4",
     "request": "^2.85.0"
   },
   "author": "David Rhoden",

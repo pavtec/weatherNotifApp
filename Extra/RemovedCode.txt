@@ -32,3 +32,52 @@ var employees = [
 	}
 ]
 
+//kgn section
+	var kgnrequest = require('request');
+	kgnrequest(kgnurl, function(err, response, body){
+		//console.log(body); //displays json object from API
+		console.log("Hello, checking Kgn stuffies");
+		var kgndata = JSON.parse(body);
+		var kgnid = kgndata.weather[0].id;
+		var kgnmain = kgndata.weather[0].main;
+		var kgndesc = kgndata.weather[0].description;
+
+		if(kgnid >= 700){
+			var kgnNote = "Weather is clear enough for 8 hour work.";
+		}else{
+			var kgnNote = "Weather is not clear enough for work.";
+		}
+
+		return kgnid, kgnmain, kgndesc, kgnNote;
+	});
+
+	//MoBay section
+	var mbrequest = require('request');
+	mbrequest(mburl, function(err, response, body){
+		//console.log(body); //displays json object from API
+		console.log("Hello, checking MB stuffies");
+		var mbdata = JSON.parse(body);
+		var mbid = mbdata.weather[0].id;
+		var mbmain = mbdata.weather[0].main;
+		var mbdesc = mbdata.weather[0].description;
+
+		if(mbid >= 700){
+			var mbNote = "Weather is clear enough for 8 hour work.";
+		}else{
+			var mbNote = "Weather is not clear enough for work.";
+		}
+
+		return mbid, mbmain, mbdesc, mbNote;
+	});
+
+	<ul>
+		<% employees.forEach(function(employee){ %>
+			<li> 
+				ID: <%=employee.id%><br>
+				Name: <%=employee.name%><br>
+				City: <%=employee.city%><br>
+				Role: <%=employee.role%><br>
+				Email: <%=employee.email%><br>
+			</li>
+		<% }) %>
+	</ul>
