@@ -81,3 +81,142 @@ var employees = [
 			</li>
 		<% }) %>
 	</ul>
+
+	<% if(khour[c] >= '00:00:00'){ %>
+	<% day = day + 1 %>
+	<% } %>
+
+//Variables for rendering - index.js
+//kgnlink: 'http://localhost:3000/kgn',
+//kgnurl: 'http://api.openweathermap.org/data/2.5/forecast?q=Kingston,JM&APPID=ccd5b60fb64d15bde59e5f5f62d199cf&units=metric',
+
+//mblink: 'http://localhost:3000/mb',
+//mburl: 'http://api.openweathermap.org/data/2.5/forecast?q=Montego%20Bay,JM&APPID=ccd5b60fb64d15bde59e5f5f62d199cf&units=metric',
+
+//indexurl: 'http://localhost:3000'
+
+//From index.ejs -> Separate pages for the city's weather
+<!--
+		<div data-role = "page" id = "kgn" data-theme = "b">
+			<div data-role = "header">
+				<a href = "#WeatherPanel" class = "ui-btn ui-btn-inline ui-corner-all ui-shadow ui-icon-bars ui-btn-icon-left ui-btn-icon-notext">Open Panel</a>
+				<h1>Kingston Loving</h1>
+				<div id = "timefulk" style="text-align: right;">
+
+				</div>
+			</div>
+
+			<div data-role = "main" class = "ui-content">
+				<h2>Kingston - Tomorrow's Weather</h2>
+				<div id = "kw">
+					<p>
+						This data has been pulled from<br>
+						<b><a href="<%= kgnurl %>" class = "ui-btn ui-btn-inline">Here:<br><%= kgnurl %></a></b>
+						<br><br><br>
+
+						Weather ID          : <%= kid %> 
+						<br><br><br>
+
+						Weather Condition   : <%= kmain %> 
+						<br><br><br>
+
+						Weather Description : <%= kdesc %> 
+						<br><br><br>
+
+						Date				: <%= kdate %>
+						<br><br><br>			
+
+						<a href = "#home" class = "ui-btn ui-btn-inline" role = "button">Return</a>
+					</p>
+				</div>
+			</div>
+
+			<div data-role = "footer">		
+				<h1>Copyright 2018 - Krace Gennedy</h1>
+			</div>
+		</div>
+
+		<div data-role = "page" id = "mb" data-theme = "b">
+				<div data-role = "header">
+				<a href = "#WeatherPanel" class = "ui-btn ui-btn-inline ui-corner-all ui-shadow ui-icon-bars ui-btn-icon-left ui-btn-icon-notext">Open Panel</a>
+				<h1>Mobay Loving</h1>
+				<div id = "timefulm" style="text-align: right;">
+
+				</div>
+			</div>
+
+			<div data-role = "main" class = "ui-content">
+				<h2>Montego Bay - Tomorrow's Weather</h2>
+				<div id = "mbw">
+					<p>
+						This data has been pulled from<br>
+						<b><a href="<%= mburl %>" class = "ui-btn ui-btn-inline">Here:<br><%= mburl %></a></b>
+						<br><br><br>
+
+						Weather ID          : <%= mid %> 
+						<br><br><br>
+
+						Weather Condition   : <%= mmain %> 
+						<br><br><br>
+
+						Weather Description : <%= mdesc %> 
+						<br><br><br>
+
+						Date				: <%= mdate %>
+						<br><br><br>
+						
+						<a href = "#home" class = "ui-btn ui-btn-inline">Return</a>
+					</p>
+				</div>
+			</div>
+
+			<div data-role = "footer">		
+				<h1>Copyright 2018 - Krace Gennedy</h1>
+			</div>
+		</div>
+	-->
+
+//kgn page to display kingston weather
+app.get('/kgn', function(req, res){
+	//console.log('Wah Gwaan Kgn');
+	res.render('index', {
+		kgnurl: 'http://api.openweathermap.org/data/2.5/forecast?q=Kingston,JM&APPID=ccd5b60fb64d15bde59e5f5f62d199cf&units=metric',
+		kid, 
+		kmain,
+		kdesc,
+		kdate
+		//indexurl: 'http://localhost:3000'
+	});
+	res.end();
+});
+
+//mobay page to display montego bay weather
+app.get('/mb', function(req, res){
+	//console.log("Heya Mobay");
+	res.render('index', {
+		mburl: 'http://api.openweathermap.org/data/2.5/forecast?q=Montego%20Bay,JM&APPID=ccd5b60fb64d15bde59e5f5f62d199cf&units=metric',
+		mid, 
+		mmain, 
+		mdesc, 
+		mdate
+		//indexurl: 'http://localhost:3000'
+	});
+	res.end();
+});
+
+//Split view to go to different pages - index.ejs
+<div class = "ui-grid-a" style = "background-color: black;">
+	<div class = "ui-block-a" style = "padding: 20px; border-style: double; border-width: 5px;border-color: grey;">
+		<h2>Kingston - Tomorrow's Weather</h2>
+		<p>
+			<a href = "#kgn" class = "ui-btn ui-btn-inline">See Kingston's Forecast</a>
+		</p>
+	</div>
+
+	<div class = "ui-block-b" style = "padding: 20px; border-style: double; border-width: 5px;border-color: grey;">
+		<h2>Montego Bay - Tomorrow's Weather</h2>
+		<p>
+			<a href = "#mb" class = "ui-btn ui-btn-inline">See Montego Bay's Forecast</a>
+		</p>
+	</div>
+</div>

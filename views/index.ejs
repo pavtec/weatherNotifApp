@@ -1,32 +1,228 @@
 <html>
 	<head>
 		<meta name = "viewport" content = "width=device-width, intial-scale = 1">
+
 		<link rel = "stylesheet" href = "http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
 		<script src = "http://code.jquery.com/jquery-1.11.1.min.js"></script>
 		<script src = "http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-		
+
+		<style type="text/css">
+			body{
+				background-color: #252525;
+				text-align: center;
+			}
+
+			th, td {
+			    padding: 8px;
+			    text-align: left;
+			    border-bottom: 1px solid #ddd;
+			}
+
+			#mbwheader{
+				color: black;
+				width: 100%; 
+				margin: 2em auto;
+				background-image: url("img/msky.jpg");
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+
+			#mbwtbl{
+				width: 100%;
+			}
+
+			#kgnwheader{
+				color: black;
+				width: 100%; 
+				margin: 2em auto;
+				background-image: url("img/ksky.jpg");
+				background-repeat: no-repeat;
+				background-size: cover;
+			}
+
+			#kgnwtbl{
+				width: 100%;
+			}
+
+			#timeful{
+				text-align: right;
+				color: white;			
+			}
+
+			#WeatherPanel{
+				background-color: black;
+				opacity: 0.9;
+			}
+
+			.forecastWrapper{
+				background-color: #333333;
+				opacity: 0.9;
+			}
+		</style>
+
 		<title>Krace Gennedy</title>
 	</head>
 
-	<body style="text-align: center;">
-		<div data-role = "page" id = "p1" data-theme = "b">
-			<div data-role = "header">
-				<h1><%= title %></h1>
+	<body onload = "startTime()">
+		<div data-role = "panel" id = "WeatherPanel" class = "ui-bar ui-bar-a" data-display = "overlay" data-position-fixed = "true" data-theme = "b">
+			<ul data-role = "listview">
+				<h1 style = "font-size: 30px;">Weather</h1>
+				<li data-icon = "false" style="background-color: black;">
+					<div data-role = "collapsible">
+						<h3>Kingston<br>9 AM<br>Tomorrow</h3>
+						<ul data-role = "listview">
+							<li data-icon = "false" style="background-color: black; text-align: center;">
+								<%= k9hour %>
+							</li>
+
+							<li data-icon = "false" style="background-color: black;">
+								Weather:<br>
+								<img src = " <%= k9icon %> " />
+							</li>
+
+							<li data-icon = "false" style="background-color: black; text-align: center;">
+								<%= k9main %> : <%= k9desc %>
+							</li>
+
+							<li data-icon = "false" style="background-color: black; text-align: center;">
+								<%= k9temp %> &#x2103;
+							</li>
+						</ul>
+					</div>
+				</li>
+
+				<li data-icon = "false" style="background-color: black;">
+					<div data-role = "collapsible">
+						<h3>Montego Bay<br>9 AM<br>Tomorrow</h3>
+						<ul data-role = "listview">
+							<li data-icon = "false" style="background-color: black; text-align: center;">
+								<%= m9hour %>
+							</li>
+
+							<li data-icon = "false" style="background-color: black;">
+								Weather:<br>
+								<img src = " <%= m9icon %> " />
+							</li>
+
+							<li data-icon = "false" style="background-color: black; text-align: center;">
+								<%= m9main %> : <%= m9desc %>
+							</li>
+
+							<li data-icon = "false" style="background-color: black; text-align: center;">
+								<%= m9temp %> &#x2103;
+							</li>
+						</ul>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+		<div data-role = "page" id = "home" data-theme = "b">
+			<div data-role = "header" data-position = "fixed">
+				<a href = "#WeatherPanel" class = "ui-btn ui-btn-inline ui-corner-all ui-shadow ui-icon-bars ui-btn-icon-left">Quick View</a>
+				<h1>Krace Gennedy Weather App</h1>
 			</div>
 		
-			<h2>Montego Bay - Tomorrow's Weather</h2>
-			<div id = "mbw">
-				<p>
-					<a href = "<%= mblink %>" class = "ui-btn ui-btn-inline">See Montego Bay's Forecast</a>
-				</p>
+			<div data-role = "main" class = "ui-content">
+				<div class = "forecastWrapper">
+					<div id = "timeful"></div>
+					<div id = "kgnwheader">
+						<p>
+							<h2>Kingston - Tomorrow's Weather</h2>
+							<h3>Forecast every 3 hours</h3>
+						</p>
+					</div>
+					<table id = "kgnwtbl">
+						<tr>
+							<th>Hour</th>
+							<th>Weather</th>
+							<th>Condition</th>
+							<th>Temperature</th>
+						</tr>
+
+						<% for(var c = 0; c < 9; c++){ %>
+							<tr>
+								<td><%= kday[c] %> : <%= khour[c] %></td>
+								<td><img src = " <%= kicon[c] %> " /></td>
+								<td><%= kmain[c] %> : <%= kdesc[c] %> </td>
+								<td><%= ktemp[c] %> &#x2103;</td>
+							</tr>
+						<% } %>
+					</table>
+
+					<br><br><br><br><br>
+
+					<div id = "mbwheader">
+						<p>
+							<h2>Montego Bay - Tomorrow's Weather</h2>
+							<h3>Forecast every 3 hours</h3>
+						</p>
+					</div>
+					<table id = "mbwtbl">
+						<tr>
+							<th>Hour</th>
+							<th>Weather</th>
+							<th>Condition</th>
+							<th>Temperature</th>
+						</tr>
+
+						<% for(var c = 0; c < 9; c++){ %>
+							<tr>
+								<td><%= mday[c] %> : <%= mhour[c] %></td>
+								<td><img src = " <%= micon[c] %> " /></td>
+								<td><%= mmain[c] %> : <%= mdesc[c] %> </td>
+								<td><%= mtemp[c] %> &#x2103;</td>
+							</tr>
+						<% } %>
+					</table>
+				</div>
+
+				<div class = "ui-grid-a" style = "background-color: black;">
+					<div class = "ui-block-a" style = "padding: 20px; border-style: double; border-width: 5px;border-color: grey;">
+						<h2>Kingston Data pulled from:</h2>
+						<p>
+							<a href = "<%= kgnurl %>" class = "ui-btn ui-btn-inline">Raw Data</a>
+						</p>
+					</div>
+
+					<div class = "ui-block-b" style = "padding: 20px; border-style: double; border-width: 5px;border-color: grey;">
+						<h2>Montego Bay Data pulled from:</h2>
+						<p>
+							<a href = "<%= mburl %>" class = "ui-btn ui-btn-inline">Raw Data</a>
+						</p>
+					</div>
+				</div>
 			</div>
 
-			<h2>Kingston - Tomorrow's Weather</h2>
-			<div id = "kw">
-				<p>
-					<a href = "<%= kgnlink %>" class = "ui-btn ui-btn-inline">See Kingston's Forecast</a>
-				</p>
-			</div>	
+			<div data-role = "footer">		
+				<h1>Copyright 2018 - Krace Gennedy</h1>
+			</div>		
 		</div>
 	</body>
-</html
+
+	<script type="text/javascript">
+			//function that reloads the panel each time so it doesn't glitch
+			$(function(){ 
+	     		$("body>[data-role = 'panel']").panel().enhanceWithin();
+	     		$("#Potanel").trigger("create");
+	 		});
+
+
+	 		//gets time to display
+			function startTime(){
+				var now = new Date();
+			    var h = now.getHours();
+			    var m = now.getMinutes();
+			    var s = now.getSeconds();
+			    m = checkTime(m);
+			    s = checkTime(s);
+			    document.getElementById('timeful').innerHTML = h + ":" + m + ":" + s;
+			    var t = setTimeout(startTime, 500);
+			}
+
+			function checkTime(i) {
+			    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+			    return i;
+			}
+ 	</script>
+</html>
